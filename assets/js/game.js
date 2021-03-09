@@ -23,16 +23,21 @@ var startGame = function() {
 
     //pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
     fight(pickedEnemyName);
-    
+    };
+
+
+
+    //if we're not at the last enemy in the array
+    if ( playerHealth > 0 && i < enemyNames.length -1) {
+        shop ();
     }
+    
 
 else {
     window.alert("You have lost your robot in battle! Game Over!");
     break;
 }
-    }
 };
-
 
 var endGame = function() {
     //if player is still alive, player wins!
@@ -42,6 +47,7 @@ var endGame = function() {
     else {
         window.alert("You've lost your robot in battle.");
     }
+}
 
     //ask player if theyd like to play again
     var playAgainConfirm = window.confirm("Would you like to play again?");
@@ -56,6 +62,10 @@ var endGame = function() {
         window.alert("Thank you for playing Robot Gladiators! Come back soon!");
     }
 }
+
+    var shop = function () {
+        console.log("entered the shop");
+    };
 
 // You can also log multiple values at once like this
 console.log(playerName, playerAttack, playerHealth);
@@ -137,3 +147,4 @@ var fight = function(enemyName) {
 
     //start the game when the page loads
     startGame();
+    
