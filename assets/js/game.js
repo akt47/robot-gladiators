@@ -19,7 +19,7 @@ var startGame = function() {
     var pickedEnemyName= enemyNames[i];
 
     //reset enemyHealth before starting new fight
-    enemyHealth= 50;
+    enemyHealth= randomNumber(40,60);
 
     //pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
     fight(pickedEnemyName);
@@ -116,11 +116,17 @@ var endGame = function() {
   }
     };
 
+    var randomNumber = function(min,max) {
+        var value = Math.floor(Math.random() * (max-min +1) + min);
+
+        return value;
+    };
+
 // You can also log multiple values at once like this
 console.log(playerName, playerAttack, playerHealth);
 
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
-var enemyHealth = 50;
+var enemyHealth = Math.floor(Math.random()* 21) + 40;
 var enemyAttack = 12;
 
 
@@ -145,14 +151,15 @@ var fight = function(enemyName) {
     if (confirmSkip) {
         window.alert(playerName + " has decided to skip this fight. Goodbye!");
         //subtract money from playerMoney for skipping
-        playerMoney = playerMoney - 10;
+        playerMoney = Math.max(0, playerMoney - 10);
         console.log("playerMoney", playerMoney)
         break;
         }
     }
   // if player choses to fight, then fight
     //Subtract the value of 'playerAttack' from the value of 'enemyHealth' and use that result to update the value in the 'enemyHealth' variable 
-    enemyHealth = enemyHealth - playerAttack;
+    var damage = randomNumber(playerAttack - 3, playerAttack);
+    enemyHealth = Math.max(0, enemyHealth - damage);
     console.log (
         playerName +  'attacked'  + enemyName +  '. '  + enemyName +  'now has'  + enemyHealth +  'health remaining.'
     );
@@ -172,7 +179,9 @@ var fight = function(enemyName) {
         window.alert(enemyName +  "still has"  + enemyHealth +  "health left.");
     }
     //Subtract the value of 'enemyAttack' from the value of 'playerHealth' and use that result to update the value of 'playerHealth' variable
-    playerHealth = playerHealth - enemyAttack; 
+    var damage = randomNumber(enemyAttack - 3, enemyAttack);
+    
+    playerHealth = Math.max(0, playerHealth - damage); 
     console.log (
         enemyName + "attacked" + playerName +  "."  + playerName + "now has"  + playerHealth+  "health remaining"
     );
