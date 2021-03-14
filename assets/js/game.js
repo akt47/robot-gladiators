@@ -99,9 +99,9 @@ var fight = function(enemy) {
     else {
         window.alert(enemy.name +  "still has"  + enemy.health +  "health left.");
     }
+    //player gets attacked first 
 }
 else {
-
     //Subtract the value of 'enemyAttack' from the value of 'playerHealth' and use that result to update the value of 'playerHealth' variable
     var damage = randomNumber(enemy.attack - 3, enemy.attack);
     
@@ -115,9 +115,10 @@ else {
         break;
     }
     else {
-        window.alert(playerInfo.name + "still has" + playerInfo.health + "health left.");
+        window.alert(playerInfo.name +  "still has"  + playerInfo.health + "health left.");
     }
 }
+//switch turn order for next round
     isPlayerTurn= !isPlayerTurn;
 }
 };
